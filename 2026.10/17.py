@@ -110,3 +110,93 @@ for items in a:
     s1.add(items)
 print(s1.average())
 # %%
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+    def __str__(self):
+        return f"《{self.title}》-{self.author}"
+b = Book("三体", "刘慈欣")
+print(b)
+# %%
+class Dog:
+    def __init__(self, name):
+        self.name = name
+    def bark(self):
+        return f"{self.name} 汪汪"
+class Person:
+    def __init__(self, name):
+        self.name = name
+    def adopt(self, dog):
+        self.dog = dog
+    def play(self):
+        return self.dog.bark()
+p = Person("小明")
+d = Dog("小黑")
+p.adopt(d)
+print(p.play())
+# %%
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def __str__(self):
+        return f"({self.x}, {self.y})"
+p = Point(3, 4)
+print(p)
+
+# %%
+class Student:
+    def __init__(self, name):
+        self.name = name
+        self.scores = []
+    def add_score(self, score):
+        self.scores.append(score)
+    def get_average(self):
+        return sum(self.scores) / len(self.scores) if self.scores else 0
+s = Student("小明")
+s.add_score(80)
+s.add_score(90)
+s.add_score(100)
+print(s.get_average())
+
+# %%
+class Student:
+    def __init__(self, name):
+        self.name = name
+        self.scores = []
+    def __str__(self):
+        scores_text = "、".join(str(score) for score in self.scores)
+        return f"{self.name}:成绩{scores_text}"
+    def add_score(self, score):
+        self.scores.append(score)
+class Classroom:
+    def __init__(self, name):
+        self.name = name
+        self.students = []
+    def add_student(self, student):
+        self.students.append(student)
+    def __str__(self):
+        names = [student.name for student in self.students]
+        names2 = (",".join(names))
+        return f"{self.name}:{names2}"
+a = Classroom("一班")
+b = Student("小明")
+c = Student("小红")
+a.add_student(b)
+a.add_student(c)
+print(a)
+s = Student("小明")
+s.add_score(95)
+print(s)    #26.10.22 20.32这个写了好久，刚换到gpt，感觉自己是傻逼
+# %%
+import json
+student = {
+    "name": "小明",
+    "score": 95
+}
+text = json.dumps(student, ensure_ascii=False)
+result = json.loads(text)
+print(result["name"])
+print(type(result))
+# %%
