@@ -200,3 +200,28 @@ result = json.loads(text)
 print(result["name"])
 print(type(result))
 # %%
+import requests
+response = requests.get(
+    "https://httpbin.org/get",
+    timeout=10
+)
+response.raise_for_status()
+data = response.json()
+print(data["method"])
+print(data["url"])
+# %%
+import requests
+try:
+    response = requests.get(
+        "https://httpbin.org/get",
+        timeout=10
+    )
+    response.raise_for_status()
+    data = response.json()
+    print(f"请求方法：{data['method']}")
+    print(f"请求网址：{data['url']}")
+except requests.exceptions.RequestException as e:
+    print("请求失败", e)
+
+    
+# %%
