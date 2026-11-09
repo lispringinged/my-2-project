@@ -51,3 +51,32 @@ try:
 except requests.exceptions.RequestException as e:
     print("请求失败",e)
 # %%
+import requests
+
+url = "https://httpbin.org/post"
+
+data = {
+    "name": "小明",
+    "day": 14
+}
+
+try:
+    response = requests.post(
+        url,
+        json=data,
+        timeout=10
+    )
+    response.raise_for_status()
+    result = response.json()
+
+    print("请求头中的 Content-Type：")
+    print(result["headers"]["Content-Type"])
+
+    print("\n服务器收到的表单数据：")
+    print(result["form"])
+
+    print("\n服务器收到的 JSON 数据：")
+    print(result["json"])
+except requests.exceptions.RequestException as e:
+    print("请求失败", e)
+# %%
