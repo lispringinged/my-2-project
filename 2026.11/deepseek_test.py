@@ -1,5 +1,6 @@
 import os
 import requests
+import sys
 
 # 1. 读取 API Key
 api_key = os.getenv("DEEPSEEK_API_KEY")
